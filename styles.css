@@ -59,7 +59,7 @@ body {
 }
 
 .header-logo {
-    max-width: 160px; /* Anpassa efter behov */
+    max-width: 100px; /* Liten logotyp i headern */
     height: auto;
 }
 
