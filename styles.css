@@ -52,7 +52,7 @@ body {
 
 /* Header Styles */
 .header {
-    background: rgba(56, 182, 255, 0.5); /* Samma färg och transparens som sektionerna */
+    background: rgba(56, 182, 255, 0.7); /* Mindre transparens än sektionerna */
     position: fixed;
     top: 0;
     width: 100%;
@@ -96,7 +96,7 @@ body {
     margin-top: 5rem; /* Justera margin-top för att minska avstånd */
     position: relative;
     z-index: 2;
-    background: rgba(56, 182, 255, 0.5); /* #38B6FF med mer transparens */
+    background: rgba(56, 182, 255, 0.8); /* #38B6FF med mindre transparens */
     backdrop-filter: blur(10px); /* För att ge en suddig effekt på bakgrunden */
     overflow: hidden;
 }
