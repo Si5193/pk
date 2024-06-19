@@ -156,3 +156,6 @@ body {
     background: #333;
     color: white;
 }
+.hero-logo {
+    width: 160%; /* Förstorar loggan med 60% */
+}
