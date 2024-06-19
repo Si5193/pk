@@ -58,6 +58,11 @@ body {
     z-index: 1000;
 }
 
+.header-logo {
+    max-width: 160px; /* Anpassa efter behov */
+    height: auto;
+}
+
 .navbar-nav .nav-link {
     color: white;
     font-weight: bold;
@@ -65,7 +70,9 @@ body {
 
 /* Hero Section */
 .hero-logo {
-    max-width: 200px;
+    width: 160%; /* Förstorar loggan med 60% */
+    max-width: 320px; /* Anpassa efter behov */
+    height: auto;
     margin-bottom: 1rem;
 }
 
@@ -155,8 +162,4 @@ body {
     padding: 1rem;
     background: #333;
     color: white;
-}
-
-.hero-logo {
-    width: 160%; /* Förstorar loggan med 60% */
 }
