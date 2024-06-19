@@ -88,7 +88,7 @@ body {
     margin-top: 5rem; /* Justera margin-top för att minska avstånd */
     position: relative;
     z-index: 2;
-    background: rgba(211, 211, 211, 0.9); /* Ljusgrå, lätt transparent bakgrund */
+    background: rgba(56, 182, 255, 0.8); /* #38B6FF med transparens */
     backdrop-filter: blur(10px); /* För att ge en suddig effekt på bakgrunden */
     overflow: hidden;
 }
@@ -156,6 +156,7 @@ body {
     background: #333;
     color: white;
 }
+
 .hero-logo {
     width: 160%; /* Förstorar loggan med 60% */
 }
