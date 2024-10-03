@@ -3,121 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>P.Kanskis Måleri AB</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Boka Fönsterputs - Fast pris 260 kr</title>
+
+    <!-- Bootstrap 4 CSS för modern styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .price-info {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: green;
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-primary:hover {
+            background-color: #218838;
+        }
+        /* Loggan */
+        .logo {
+            display: block;
+            margin: 0 auto 20px;
+            max-width: 150px;
+        }
+        /* Bekräftelsemeddelande */
+        #confirmation {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+        }
+        .extra-services {
+            margin-top: 20px;
+        }
+        .extra-services label {
+            font-weight: bold;
+            color: red;
+        }
+        /* Gör checkboxar snyggare */
+        .form-check-input {
+            width: 20px;
+            height: 20px;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
-    <header id="header" class="header navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#home">
-                <img src="https://i.imgur.com/YDqTBCK.png" alt="Logotyp" class="header-logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Hem</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#how-it-works">Hur fungerar det?</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#quote">Offertförfrågan</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">Om oss</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Kontakt</a></li>
-                </ul>
-            </div>
+
+
+        <h2>Förbokning av Fönsterputs hos Putsväck AB</h2>
+
+        <!-- Fast pris information -->
+        <div class="price-info">
+            Fast pris: 250 kr efter RUT-avdrag för hela huset!
         </div>
-    </header>
-    <div class="video-container" id="home">
-        <video autoplay muted loop playsinline id="background-video">
-            <source src="https://videos.pexels.com/video-files/4808678/4808678-uhd_2560_1440_24fps.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="overlay">
-            <img src="https://i.imgur.com/YDqTBCK.png" alt="Logotyp" class="hero-logo">
-            <button class="hero-button btn btn-primary mt-3" onclick="scrollToSection('how-it-works')">Hur fungerar det?</button>
-            <button class="hero-button btn btn-secondary mt-3" onclick="scrollToSection('quote')">Begär offert</button>
+
+        <!-- Bokningsformulär -->
+        <form id="myForm">
+            <!-- Namn -->
+            <div class="form-group">
+                <label for="name">Namn & Efternamn:</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Ditt namn" required>
+            </div>
+
+            <!-- Adress -->
+            <div class="form-group">
+                <label for="address">Adress:</label>
+                <input type="text" id="address" name="address" class="form-control" placeholder="Din adress" required>
+            </div>
+
+            <!-- Stad -->
+            <div class="form-group">
+                <label for="city">Stad:</label>
+                <input type="text" id="city" name="city" class="form-control" placeholder="Din stad" required>
+            </div>
+
+            <!-- Postnummer -->
+            <div class="form-group">
+                <label for="postcode-modal">Postnummer:</label>
+                <input type="text" id="postcode-modal" name="postcode" class="form-control" placeholder="Ditt postnummer" required>
+            </div>
+
+            <!-- Personnummer för RUT -->
+            <div class="form-group">
+                <label for="ssn">Personnummer för RUT-avdraget:</label>
+                <input type="text" id="ssn" name="ssn" class="form-control" placeholder="Ditt personnummer" required>
+            </div>
+
+            <!-- E-post -->
+            <div class="form-group">
+                <label for="email">E-post:</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Din e-post" required>
+            </div>
+
+            <!-- Telefon -->
+            <div class="form-group">
+                <label for="phone">Telefon:</label>
+                <input type="tel" id="phone" name="phone" class="form-control" placeholder="Ditt telefonnummer" required>
+            </div>
+						
+						     <!-- Fönstertyp (Dropdown) -->
+            <div class="form-group">
+                <label for="window-type">Typ av fönster:</label>
+                <select id="window-type" name="window-type" class="form-control" required>
+                    <option value="" disabled selected>Välj typ av fönster</option>
+                    <option value="Normala fönster">Normala fönster</option>
+                    <option value="Fasta spröjs">Fasta spröjs</option>
+                    <option value="Avtagbara spröjs">Avtagbara spröjs</option>
+                </select>
+            </div>
+						
+						<!-- Extra tjänster -->
+            <div class="extra-services">
+                <label>Extra kostnad för dessa tjänster tillkommer:</label>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="uterum-veranda" name="extra_services" value="Uterum/Veranda">
+                    <label for="uterum-veranda" class="form-check-label">Uterum/Veranda</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="ovanvaning" name="extra_services" value="Ovanvåning">
+                    <label for="ovanvaning" class="form-check-label">Ovanvåning</label>
+                </div>
+            </div>
+
+            <!-- Bekräftelseknapp -->
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary btn-block">Boka nu för 250 kr</button>
+            </div>
+        </form>
+
+        <!-- Bekräftelsemeddelande -->
+        <div id="confirmation">
+            <p>Tack för din bokning! Vi kommer och putsar dina fönster inom 1-4 veckor.</p>
         </div>
     </div>
-    <main>
-        <section id="how-it-works" class="section fade-in">
-            <div class="container">
-                <h2>Hur fungerar det?</h2>
-                <div class="row text-center">
-                    <div class="col-md-4">
-                        <div class="step-icon">
-                            <i class="material-icons md-36">filter_1</i>
-                        </div>
-                        <h3>Fyll i Offertförfrågan</h3>
-                        <p>På våran sida kan du fylla i en offertförfrågan här beskriver du vad du har för idé/behov. Det går även bra att ringa oss!</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="step-icon">
-                            <i class="material-icons md-36">filter_2</i>
-                        </div>
-                        <h3>Vi Kontaktar Dig</h3>
-                        <p>Vi kontaktar dig antingen via telefon eller mail för vidare diskussioner. Vid lättare objekt kan vi skicka en offert direkt.</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="step-icon">
-                            <i class="material-icons md-36">filter_3</i>
-                        </div>
-                        <h3>Vi Levererar</h3>
-                        <p>När vi är överens om detaljerna så levererar vi enligt önskemål.</p>
-                    </div>
-                </div>
-                <div class="text-center mt-4">
-                    <button class="btn btn-primary" onclick="scrollToSection('quote')">Offert</button>
-                </div>
-            </div>
-        </section>
-        <hr class="section-divider">
-        <section id="quote" class="section fade-in">
-            <div class="container">
-                <h2>Offertförfrågan</h2>
-                <form id="quote-form" class="quote-form">
-                    <div class="form-group">
-                        <label for="name">Namn:</label>
-                        <input type="text" id="name" name="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-post:</label>
-                        <input type="email" id="email" name="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Beskrivning:</label>
-                        <textarea id="message" name="message" rows="5" class="form-control" required></textarea>
-                    </div>
-                    <button type="submit" class="form-button btn btn-primary mt-3">Skicka</button>
-                </form>
-            </div>
-        </section>
-        <hr class="section-divider">
-        <section id="about" class="section fade-in">
-            <div class="container">
-                <h2>Om oss</h2>
-                <p>Vi erbjuder högkvalitativa måleritjänster för både hem och företag. Med noggrannhet och personligt engagemang ser vi till att varje projekt blir en framgång. Låt oss hjälpa dig att ge dina ytor en ny, fräsch look!</p>
-                <button class="section-button btn btn-primary mt-3" onclick="scrollToSection('contact')">Kontakta oss</button>
-            </div>
-        </section>
-        <hr class="section-divider">
-        <section id="contact" class="section fade-in">
-            <div class="container">
-                <h2>Kontakt</h2>
-                <p>Kontaktuppgifter och formulär för att nå oss...</p>
-            </div>
-        </section>
-    </main>
-    <footer class="footer">
-        <div class="container text-center">
-            <p>&copy; 2024 P.Kanskis Måleri AB. Alla rättigheter förbehållna.</p>
-            <p>Kontakt: <a href="tel:+46721234567">072-3456789</a> | <a href="mailto:info@pkanskis.se">info@pkanskis.se</a></p>
-        </div>
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+
+    <!-- EmailJS och jQuery -->
+    <script>
+        $('#myForm').on('submit', function(event) {
+            event.preventDefault(); // Hindra siduppdatering
+
+            // Hämta formulärdata
+            var formData = new FormData(this);
+            formData.append('service_id', 'service_9gfg81a');  // Ditt Service ID
+            formData.append('template_id', 'template_5c722qi');  // Ditt Template ID
+            formData.append('user_id', 'sNU4y7tlo5J8WCort');  // Din Public Key
+
+            // Hantera checkboxar för extra tjänster
+            var uterumVeranda = $('#uterum-veranda').is(':checked') ? 'Ja' : 'Nej';
+            var ovanvaning = $('#ovanvaning').is(':checked') ? 'Ja' : 'Nej';
+
+            // Lägg till extra tjänster i formData
+            formData.append('uterum_veranda', uterumVeranda);  // Lägg till värdet för Uterum/Veranda
+            formData.append('ovanvaning', ovanvaning);  // Lägg till värdet för Ovanvåning
+
+            // Skicka AJAX-förfrågan till EmailJS
+            $.ajax('https://api.emailjs.com/api/v1.0/email/send-form', {
+                type: 'POST',
+                data: formData,
+                contentType: false, // Auto-detection
+                processData: false // Ingen behov att omvandla formData till sträng
+            }).done(function() {
+                // Visa bekräftelsemeddelande
+                $('#confirmation').show();
+                // Återställ formuläret
+                $('#myForm')[0].reset();
+            }).fail(function(error) {
+                alert('Ett fel uppstod vid bokningen. Försök igen.');
+            });
+        });
+    </script>
+
+    <!-- Bootstrap JS (valfritt) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="scripts.js"></script>
+
 </body>
 </html>
