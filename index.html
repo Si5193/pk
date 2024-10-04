@@ -7,6 +7,11 @@
 
     <!-- Bootstrap 4 CSS för modern styling -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Google Fonts för snyggare fonter -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
@@ -61,36 +66,116 @@
             border: 1px solid #c3e6cb;
             border-radius: 5px;
         }
+        /* Snygga checkboxar som knappar */
         .extra-services {
-            margin-top: 20px;
+            margin-top: 40px; /* Ökat avstånd till föregående fält */
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Avstånd mellan knappar */
+            margin-bottom: 30px; /* Mellanrum till nästa fält */
         }
-        .extra-services label {
+        .checkbox-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            border: 2px solid #ddd;
+            padding: 15px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
             font-weight: bold;
-            color: red;
         }
-        /* Gör checkboxar snyggare */
-        .form-check-input {
-            width: 20px;
-            height: 20px;
+        .checkbox-button input {
+            display: none;
+        }
+        .checkbox-button.active {
+            background-color: #36b8eb;
+            color: white;
+            border-color: #37b8eb;
+            box-shadow: 0px 0px 15px rgba(0, 128, 0, 0.4); /* Skuggning vid markerat */
+        }
+        .checkbox-button:hover {
+            border-color: #28a745;
+        }
+        .service-description {
+            font-size: 0.9rem;
             margin-top: 5px;
+            color: #666;
+            text-align: center;
+        }
+        .extra-services-header {
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        /* Villkor länk - Blå, centrerad och klickbar */
+        .terms-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .terms-link:hover {
+            color: #0056b3;
+        }
+        /* Modal-stil */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 8px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
+    <div class="container">
+        <!-- Logotyp -->
+        <img src="https://i.imgur.com/sb9uZwT.png" alt="Putsvack Logotyp" class="logo">
 
-        <h2>Förbokning av fönsterputs hos Putsväck AB</h2>
+        <h2>Förbokningskampanj Putsväck Fönsterputs</h2>
 
         <!-- Fast pris information -->
         <div class="price-info">
-            Fast pris: 250 kr efter RUT-avdrag för hela huset!
+            Fast pris: 250 kr efter RUT-avdrag
         </div>
 
         <!-- Bokningsformulär -->
         <form id="myForm">
             <!-- Namn -->
             <div class="form-group">
-                <label for="name">Namn & Efternamn:</label>
+                <label for="name">Namn:</label>
                 <input type="text" id="name" name="name" class="form-control" placeholder="Ditt namn" required>
             </div>
 
@@ -118,6 +203,36 @@
                 <input type="text" id="ssn" name="ssn" class="form-control" placeholder="Ditt personnummer" required>
             </div>
 
+            <!-- Fönstertyp (Dropdown) -->
+            <div class="form-group">
+                <label for="window-type">Typ av fönster:</label>
+                <select id="window-type" name="window-type" class="form-control" required>
+                    <option value="" disabled selected>Välj typ av fönster</option>
+                    <option value="Normala fönster">Normala fönster</option>
+                    <option value="Fasta spröjs">Fasta spröjs</option>
+                    <option value="Avtagbara spröjs">Avtagbara spröjs</option>
+                </select>
+            </div>
+
+            <!-- Rubrik för extra tjänster -->
+            <div class="extra-services-header">
+                Vill du lägga till något extra? <br> (Tillkommer utöver kampanjen)
+            </div>
+
+            <!-- Extra tjänster (Snygga checkboxar som knappar) -->
+            <div class="extra-services">
+                <div class="checkbox-button" id="uterum-button">
+                    <input type="checkbox" id="uterum-veranda" name="extra_services" value="Uterum/Veranda">
+                    <label for="uterum-veranda">Uterum/Veranda</label>
+                    <div class="service-description">Kampanj uterum utvändigt 200kr</div>
+                </div>
+                <div class="checkbox-button" id="ovanvaning-button">
+                    <input type="checkbox" id="ovanvaning" name="extra_services" value="Ovanvåning">
+                    <label for="ovanvaning">Ovanvåning</label>
+                    <div class="service-description">Kampanj 100kr/6st fönster på ovanvåningen</div>
+                </div>
+            </div>
+
             <!-- E-post -->
             <div class="form-group">
                 <label for="email">E-post:</label>
@@ -129,45 +244,65 @@
                 <label for="phone">Telefon:</label>
                 <input type="tel" id="phone" name="phone" class="form-control" placeholder="Ditt telefonnummer" required>
             </div>
-						
-						     <!-- Fönstertyp (Dropdown) -->
+
+            <!-- Kommentar (extra information) -->
             <div class="form-group">
-                <label for="window-type">Typ av fönster:</label>
-                <select id="window-type" name="window-type" class="form-control" required>
-                    <option value="" disabled selected>Välj typ av fönster</option>
-                    <option value="Normala fönster">Normala fönster</option>
-                    <option value="Fasta spröjs">Fasta spröjs</option>
-                    <option value="Avtagbara spröjs">Avtagbara spröjs</option>
-                </select>
+                <label for="comments">Kommentarer:</label>
+                <textarea id="comments" name="comments" class="form-control" rows="4" placeholder="T.ex. Har en hund, extra information..."></textarea>
             </div>
-						
-						<!-- Extra tjänster -->
-            <div class="extra-services">
-                <label>Extra kostnad för dessa tjänster tillkommer:</label>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="uterum-veranda" name="extra_services" value="Uterum/Veranda">
-                    <label for="uterum-veranda" class="form-check-label">Uterum/Veranda</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="ovanvaning" name="extra_services" value="Ovanvåning">
-                    <label for="ovanvaning" class="form-check-label">Ovanvåning</label>
-                </div>
+
+            <!-- Värva en vän/närstående -->
+            <div class="form-group">
+                <label for="friend-name">Värva en vän/närstående och få 15% rabatt på nästa puts:</label>
+                <input type="text" id="friend-name" name="friend_name" class="form-control" placeholder="Vännens namn">
+            </div>
+
+            <div class="form-group">
+                <input type="tel" id="friend-phone" name="friend_phone" class="form-control" placeholder="Vännens telefonnummer">
             </div>
 
             <!-- Bekräftelseknapp -->
             <div class="form-group text-center">
-                <button type="submit" class="btn btn-primary btn-block">Boka nu för 250 kr</button>
+                <button type="submit" class="btn btn-primary btn-block">Boka nu för 260 kr</button>
             </div>
         </form>
 
+        <!-- Villkor länk -->
+        <div class="terms-link" id="termsLink">Villkor</div>
+
         <!-- Bekräftelsemeddelande -->
         <div id="confirmation">
-            <p>Tack för din bokning! Vi kommer och putsar dina fönster inom 1-4 veckor.</p>
+            <p>Tack för din bokning! Vi kommer och putsar dina rutor skimmrande rena om 1-4 veckor.</p>
+        </div>
+    </div>
+
+    <!-- Modal för villkor -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Villkor</h2>
+            <p>1. Du bokar automatiskt upp dig för löpande fönsterputsning. (Rena rutor året om)</p>
+            <p>2. Du kan närsomhelst avsluta/pausa fönsterputsningen. Det finns således ingen uppsägningstid eller bindningstid.</p>
+            <p>3. Ditt pris första gången är 250:-. Vi räknar sedan ut fortsatt pris efter första putsningen.</p>
+            <p>4. I erbjudandet ingår fönsterputsning upp till 30 rutor. Sedan tillkommer en kostnad med 14:- per fönster efter RUT-avdrag.</p>
+            <p>5. Uterum och övervåning är tilläggstjänster och kostar extra utöver de 250:- som kampanjen är på.</p>
+            <p>6. Vi putsar dina rutor ungerfär var 8:e vecka. Detta blir ca 6 tillfällen per år.</p>
         </div>
     </div>
 
     <!-- EmailJS och jQuery -->
     <script>
+        // Hantera checkbox-knappar för extra tjänster
+        $('#uterum-button').click(function() {
+            $(this).toggleClass('active');
+            $('#uterum-veranda').prop('checked', !$('#uterum-veranda').prop('checked'));
+        });
+
+        $('#ovanvaning-button').click(function() {
+            $(this).toggleClass('active');
+            $('#ovanvaning').prop('checked', !$('#ovanvaning').prop('checked'));
+        });
+
         $('#myForm').on('submit', function(event) {
             event.preventDefault(); // Hindra siduppdatering
 
@@ -176,14 +311,6 @@
             formData.append('service_id', 'service_9gfg81a');  // Ditt Service ID
             formData.append('template_id', 'template_5c722qi');  // Ditt Template ID
             formData.append('user_id', 'sNU4y7tlo5J8WCort');  // Din Public Key
-
-            // Hantera checkboxar för extra tjänster
-            var uterumVeranda = $('#uterum-veranda').is(':checked') ? 'Ja' : 'Nej';
-            var ovanvaning = $('#ovanvaning').is(':checked') ? 'Ja' : 'Nej';
-
-            // Lägg till extra tjänster i formData
-            formData.append('uterum_veranda', uterumVeranda);  // Lägg till värdet för Uterum/Veranda
-            formData.append('ovanvaning', ovanvaning);  // Lägg till värdet för Ovanvåning
 
             // Skicka AJAX-förfrågan till EmailJS
             $.ajax('https://api.emailjs.com/api/v1.0/email/send-form', {
@@ -196,10 +323,34 @@
                 $('#confirmation').show();
                 // Återställ formuläret
                 $('#myForm')[0].reset();
+                // Avmarkera knapparna
+                $('.checkbox-button').removeClass('active');
             }).fail(function(error) {
                 alert('Ett fel uppstod vid bokningen. Försök igen.');
             });
         });
+
+        // Modal för villkor
+        var modal = document.getElementById('termsModal');
+        var btn = document.getElementById('termsLink');
+        var span = document.getElementsByClassName('close')[0];
+
+        // När användaren klickar på "Villkor" visas modalen
+        btn.onclick = function() {
+            modal.style.display = 'block';
+        }
+
+        // När användaren klickar på stäng (x) döljs modalen
+        span.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        // Om användaren klickar utanför modalen stängs den
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
     </script>
 
     <!-- Bootstrap JS (valfritt) -->
@@ -207,3 +358,4 @@
 
 </body>
 </html>
+
