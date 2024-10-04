@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boka Fönsterputs - Fast pris 250 kr</title>
+    <title>Boka Fönsterputs - Fast pris 260 kr</title>
 
     <!-- Bootstrap 4 CSS för modern styling -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -206,7 +206,7 @@
             <!-- Fönstertyp (Dropdown) -->
             <div class="form-group">
                 <label for="window-type">Typ av fönster:</label>
-                <select id="window-type" name="window-type" class="form-control" required>
+                <select id="window-type" name="window_type" class="form-control" required>
                     <option value="" disabled selected>Välj typ av fönster</option>
                     <option value="Normala fönster">Normala fönster</option>
                     <option value="Fasta spröjs">Fasta spröjs</option>
@@ -222,12 +222,12 @@
             <!-- Extra tjänster (Snygga checkboxar som knappar) -->
             <div class="extra-services">
                 <div class="checkbox-button" id="uterum-button">
-                    <input type="checkbox" id="uterum-veranda" name="extra_services" value="Uterum/Veranda">
+                    <input type="checkbox" id="uterum-veranda" name="extra_services_uterum" value="Ja">
                     <label for="uterum-veranda">Uterum/Veranda</label>
                     <div class="service-description">Kampanj uterum utvändigt 200kr</div>
                 </div>
                 <div class="checkbox-button" id="ovanvaning-button">
-                    <input type="checkbox" id="ovanvaning" name="extra_services" value="Ovanvåning">
+                    <input type="checkbox" id="ovanvaning" name="extra_services_ovanvaning" value="Ja">
                     <label for="ovanvaning">Ovanvåning</label>
                     <div class="service-description">Kampanj 100kr/6st fönster på ovanvåningen</div>
                 </div>
@@ -263,7 +263,7 @@
 
             <!-- Bekräftelseknapp -->
             <div class="form-group text-center">
-                <button type="submit" class="btn btn-primary btn-block">Boka nu för endast 250 kr</button>
+                <button type="submit" class="btn btn-primary btn-block">Boka nu för 250 kr</button>
             </div>
         </form>
 
@@ -308,6 +308,15 @@
 
             // Hämta formulärdata
             var formData = new FormData(this);
+
+            // Lägg till standardvärden för checkboxar om de inte är markerade
+            if (!$('#uterum-veranda').prop('checked')) {
+                formData.append('extra_services_uterum', 'Nej');
+            }
+            if (!$('#ovanvaning').prop('checked')) {
+                formData.append('extra_services_ovanvaning', 'Nej');
+            }
+
             formData.append('service_id', 'service_9gfg81a');  // Ditt Service ID
             formData.append('template_id', 'template_5c722qi');  // Ditt Template ID
             formData.append('user_id', 'sNU4y7tlo5J8WCort');  // Din Public Key
@@ -358,4 +367,3 @@
 
 </body>
 </html>
-
