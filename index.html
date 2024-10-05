@@ -23,12 +23,14 @@
 
     <style>
         /* Bakgrundsbild inställningar */
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: url('https://images.pexels.com/photos/756903/pexels-photo-756903.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center fixed; /* Bild som bakgrund */
-            background-size: cover; /* Se till att bilden täcker hela skärmen */
-            padding: 20px;
-        }
+      body {
+    font-family: 'Poppins', sans-serif;
+    background: url('https://images.pexels.com/photos/756903/pexels-photo-756903.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center fixed; 
+    background-size: cover; /* Se till att bilden täcker hela skärmen */
+    background-repeat: no-repeat; /* Förhindrar att bilden upprepas */
+    background-attachment: fixed; /* Håller bakgrunden fast vid scroll */
+    padding: 20px;
+}
 
         .container {
             max-width: 600px;
