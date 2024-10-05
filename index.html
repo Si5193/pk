@@ -369,11 +369,6 @@
             $('#ovanvaning').prop('checked', !$('#ovanvaning').prop('checked'));
         });
 
-        // Hantera extra tjänster: Ja/Nej beroende på om checkboxar är markerade eller ej
-formData.append('extra_services_uterum', $('#uterum-veranda').prop('checked') ? 'Ja' : 'Nej');
-formData.append('extra_services_ovanvaning', $('#ovanvaning').prop('checked') ? 'Ja' : 'Nej');
-formData.append('internal_cleaning', $('#internal-cleaning').prop('checked') ? 'Ja' : 'Nej');
-
 
         $('#myForm').on('submit', function(event) {
             event.preventDefault(); // Hindra siduppdatering
