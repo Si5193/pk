@@ -22,26 +22,32 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
+        /* Bakgrundsbild inställningar */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f9f9f9;
+            background: url('https://images.pexels.com/photos/756903/pexels-photo-756903.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center fixed; /* Bild som bakgrund */
+            background-size: cover; /* Se till att bilden täcker hela skärmen */
             padding: 20px;
         }
+
         .container {
             max-width: 600px;
             margin: 0 auto;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.9); /* Vit bakgrund med transparens för att låta bakgrunden synas lite */
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         h2 {
             text-align: center;
             margin-bottom: 20px;
         }
+
         .form-group label {
             font-weight: bold;
         }
+
         .price-info {
             text-align: center;
             margin-bottom: 20px;
@@ -49,19 +55,23 @@
             color: green;
             font-weight: bold;
         }
+
         .btn-primary {
             background-color: #28a745;
             border-color: #28a745;
         }
+
         .btn-primary:hover {
             background-color: #218838;
         }
+
         /* Loggan */
         .logo {
             display: block;
             margin: 0 auto 20px;
             max-width: 150px;
         }
+
         /* Bekräftelsemeddelande */
         #confirmation {
             display: none;
@@ -73,6 +83,7 @@
             border: 1px solid #c3e6cb;
             border-radius: 5px;
         }
+
         /* Snygga checkboxar som knappar */
         .extra-services {
             margin-top: 40px; /* Ökat avstånd till föregående fält */
@@ -81,6 +92,7 @@
             gap: 20px; /* Avstånd mellan knappar */
             margin-bottom: 30px; /* Mellanrum till nästa fält */
         }
+
         .checkbox-button {
             display: flex;
             flex-direction: column;
@@ -94,24 +106,29 @@
             transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
             font-weight: bold;
         }
+
         .checkbox-button input {
             display: none;
         }
+
         .checkbox-button.active {
             background-color: #36b8eb;
             color: white;
             border-color: #37b8eb;
             box-shadow: 0px 0px 15px rgba(0, 128, 0, 0.4); /* Skuggning vid markerat */
         }
+
         .checkbox-button:hover {
             border-color: #28a745;
         }
+
         .service-description {
             font-size: 0.9rem;
             margin-top: 5px;
             color: #666;
             text-align: center;
         }
+
         .extra-services-header {
             font-weight: bold;
             font-size: 1.2rem;
@@ -119,6 +136,7 @@
             margin-bottom: 10px;
             color: #333;
         }
+
         /* Villkor länk - Blå, centrerad och klickbar */
         .terms-link {
             text-align: center;
@@ -127,9 +145,11 @@
             cursor: pointer;
             text-decoration: underline;
         }
+
         .terms-link:hover {
             color: #0056b3;
         }
+
         /* Modal-stil */
         .modal {
             display: none;
@@ -142,6 +162,7 @@
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.5);
         }
+
         .modal-content {
             background-color: #fff;
             margin: 10% auto;
@@ -151,12 +172,14 @@
             max-width: 500px;
             border-radius: 8px;
         }
+
         .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
         }
+
         .close:hover,
         .close:focus {
             color: black;
@@ -325,16 +348,10 @@
             // Hämta formulärdata
             var formData = new FormData(this);
 
-            // Lägg till standardvärden för checkboxar om de inte är markerade
-            if (!$('#uterum-veranda').prop('checked')) {
-                formData.append('extra_services_uterum', 'Nej');
-            }
-            if (!$('#ovanvaning').prop('checked')) {
-                formData.append('extra_services_ovanvaning', 'Nej');
-            }
-            if (!$('#internal-cleaning').prop('checked')) {
-                formData.append('internal_cleaning', 'Nej');
-            }
+            // Hantera extra tjänster: Ja/Nej beroende på om checkboxar är markerade eller ej
+            formData.append('extra_services_uterum', $('#uterum-veranda').prop('checked') ? 'Ja' : 'Nej');
+            formData.append('extra_services_ovanvaning', $('#ovanvaning').prop('checked') ? 'Ja' : 'Nej');
+            formData.append('internal_cleaning', $('#internal-cleaning').prop('checked') ? 'Ja' : 'Nej');
 
             formData.append('service_id', 'service_9gfg81a');  // Ditt Service ID
             formData.append('template_id', 'template_5c722qi');  // Ditt Template ID
