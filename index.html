@@ -8,7 +8,7 @@
     <!-- Open Graph metataggar -->
     <meta property="og:title" content="Boka utvändig Fönsterputs - Fast pris 250kr">
     <meta property="og:description" content="Boka din fönsterputsning idag för bara 250 kr efter RUT-avdrag!">
-    <meta property="og:image" content="https://i.imgur.com/LWr4TnI.png"> <!-- Bildlänk till din logga -->
+    <meta property="og:image" content="https://i.imgur.com/sb9uZwT.png"> <!-- Bildlänk till din logga -->
     <meta property="og:url" content="https://si5193.github.io/pk/"> <!-- Din hemsidas URL -->
     <meta property="og:type" content="website">
 
@@ -268,6 +268,15 @@
                 <input type="tel" id="friend-phone" name="friend_phone" class="form-control" placeholder="Vännens telefonnummer">
             </div>
 
+            <!-- Checkbox för invändig fönsterputs -->
+            <div class="form-group">
+                <label for="internal-cleaning">Är du intresserad av invändig fönsterputsning?</label>
+                <div class="custom-checkbox-container">
+                    <input type="checkbox" id="internal-cleaning" name="internal_cleaning" value="Ja">
+                    <label for="internal-cleaning" class="custom-checkbox-label">Ja, jag vill bli kontaktad för invändig putsning</label>
+                </div>
+            </div>
+
             <!-- Bekräftelseknapp -->
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary btn-block">Boka nu för 250 kr</button>
@@ -322,6 +331,9 @@
             }
             if (!$('#ovanvaning').prop('checked')) {
                 formData.append('extra_services_ovanvaning', 'Nej');
+            }
+            if (!$('#internal-cleaning').prop('checked')) {
+                formData.append('internal_cleaning', 'Nej');
             }
 
             formData.append('service_id', 'service_9gfg81a');  // Ditt Service ID
