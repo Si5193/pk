@@ -81,25 +81,68 @@
             max-width: 150px;
         }
 
-        /* Bekräftelsemeddelande */
-        #confirmation {
+        /* Popup (modal) för bokningsbekräftelse */
+        #confirmationModal {
             display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        #confirmationModal .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 8px;
             text-align: center;
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #d4edda;
+            box-shadow: 0 0 10px rgba(0, 128, 0, 0.4);
+        }
+
+        #confirmationModal h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
             color: #155724;
-            border: 1px solid #c3e6cb;
-            border-radius: 5px;
+        }
+
+        #confirmationModal p {
+            font-size: 1.1rem;
+        }
+
+        .confirmation-icon {
+            font-size: 50px;
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+
+        .close-confirmation {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-confirmation:hover,
+        .close-confirmation:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
         }
 
         /* Snygga checkboxar som knappar */
         .extra-services {
-            margin-top: 40px; /* Ökat avstånd till föregående fält */
+            margin-top: 40px;
             display: flex;
             justify-content: center;
-            gap: 20px; /* Avstånd mellan knappar */
-            margin-bottom: 30px; /* Mellanrum till nästa fält */
+            gap: 20px;
+            margin-bottom: 30px;
         }
 
         .checkbox-button {
@@ -124,7 +167,7 @@
             background-color: #36b8eb;
             color: white;
             border-color: #37b8eb;
-            box-shadow: 0px 0px 15px rgba(0, 128, 0, 0.4); /* Skuggning vid markerat */
+            box-shadow: 0px 0px 15px rgba(0, 128, 0, 0.4);
         }
 
         .checkbox-button:hover {
@@ -159,7 +202,7 @@
             color: #0056b3;
         }
 
-        /* Modal-stil */
+        /* Modal-stil för villkor */
         .modal {
             display: none;
             position: fixed;
@@ -198,12 +241,12 @@
 
         .custom-checkbox-container {
             display: flex;
-            align-items: center;  /* Vertikal centrering av checkboxen och texten */
-            gap: 10px;  /* Mellanrum mellan checkboxen och texten */
+            align-items: center;
+            gap: 10px;
         }
 
         .custom-checkbox-label {
-            margin: 0;  /* Tar bort eventuell marginal på etiketten */
+            margin: 0;
             font-weight: bold;
         }
     </style>
@@ -211,11 +254,10 @@
 <body>
 
     <!-- Videobakgrund -->
-<video autoplay muted loop playsinline class="video-background">
-    <source src="https://videos.pexels.com/video-files/1777892/1777892-hd_1280_720_25fps.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
-
+    <video autoplay muted loop playsinline class="video-background">
+        <source src="https://videos.pexels.com/video-files/1777892/1777892-hd_1280_720_25fps.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
     <div class="container">
         <!-- Logotyp -->
@@ -335,11 +377,6 @@
 
         <!-- Villkor länk -->
         <div class="terms-link" id="termsLink">Villkor</div>
-
-        <!-- Bekräftelsemeddelande -->
-        <div id="confirmation">
-            <p>Tack för din bokning! Vi kommer och putsar dina rutor skimmrande rena om 1-4 veckor.</p>
-        </div>
     </div>
 
     <!-- Modal för villkor -->
@@ -352,7 +389,19 @@
             <p>3. Ditt pris första gången är 250:-. Vi räknar sedan ut fortsatt pris efter första putsningen.</p>
             <p>4. I erbjudandet ingår fönsterputsning upp till 30 rutor. Sedan tillkommer en kostnad med 14:- per fönster efter RUT-avdrag.</p>
             <p>5. Uterum och övervåning är tilläggstjänster och kostar extra utöver de 250:- som kampanjen är på.</p>
-            <p>6. Vi putsar dina rutor ungerfär var 8:e vecka. Detta blir ca 6 tillfällen per år.</p>
+            <p>6. Vi putsar dina rutor ungefär var 8:e vecka. Detta blir ca 6 tillfällen per år.</p>
+        </div>
+    </div>
+
+    <!-- Popup Modal för bokningsbekräftelse -->
+    <div id="confirmationModal">
+        <div class="modal-content">
+            <span class="close-confirmation">&times;</span>
+            <div class="confirmation-icon">✔️</div>
+            <h3>Bokning genomförd!</h3>
+            <p>Tack för din bokning! Vi kommer att kontakta dig snart för att bekräfta detaljerna.</p>
+            <p>Vi putsar dina fönster inom 1-4 veckor. Du kommer att få ett meddelande innan vi kommer.</p>
+            <p><strong>Behöver du hjälp?</strong> Kontakta oss på support@putsvack.se eller ring oss på 123-456 789.</p>
         </div>
     </div>
 
@@ -384,18 +433,20 @@
             $.ajax('https://api.emailjs.com/api/v1.0/email/send-form', {
                 type: 'POST',
                 data: formData,
-                contentType: false, // Auto-detection
-                processData: false // Ingen behov att omvandla formData till sträng
+                contentType: false, 
+                processData: false 
             }).done(function() {
-                // Visa bekräftelsemeddelande
-                $('#confirmation').show();
-                // Återställ formuläret
-                $('#myForm')[0].reset();
-                // Avmarkera knapparna
+                $('#confirmationModal').show();  // Visa bokningsbekräftelse som popup
+                $('#myForm')[0].reset(); // Återställ formuläret
                 $('.checkbox-button').removeClass('active');
             }).fail(function(error) {
                 alert('Ett fel uppstod vid bokningen. Försök igen.');
             });
+        });
+
+        // Stäng bokningsbekräftelse (popup)
+        $('.close-confirmation').click(function() {
+            $('#confirmationModal').hide();
         });
 
         // Modal för villkor
@@ -403,17 +454,14 @@
         var btn = document.getElementById('termsLink');
         var span = document.getElementsByClassName('close')[0];
 
-        // När användaren klickar på "Villkor" visas modalen
         btn.onclick = function() {
             modal.style.display = 'block';
         }
 
-        // När användaren klickar på stäng (x) döljs modalen
         span.onclick = function() {
             modal.style.display = 'none';
         }
 
-        // Om användaren klickar utanför modalen stängs den
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = 'none';
