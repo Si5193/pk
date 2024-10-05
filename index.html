@@ -350,10 +350,6 @@
             // Hämta formulärdata
             var formData = new FormData(this);
 
-            // Hantera extra tjänster: Ja/Nej beroende på om checkboxar är markerade eller ej
-            formData.append('extra_services_uterum', $('#uterum-veranda').prop('checked') ? 'Ja' : 'Nej');
-            formData.append('extra_services_ovanvaning', $('#ovanvaning').prop('checked') ? 'Ja' : 'Nej');
-            formData.append('internal_cleaning', $('#internal-cleaning').prop('checked') ? 'Ja' : 'Nej');
 
             formData.append('service_id', 'service_9gfg81a');  // Ditt Service ID
             formData.append('template_id', 'template_5c722qi');  // Ditt Template ID
