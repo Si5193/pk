@@ -188,6 +188,17 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        .custom-checkbox-container {
+    display: flex;
+    align-items: center;  /* Vertikal centrering av checkboxen och texten */
+    gap: 10px;  /* Mellanrum mellan checkboxen och texten */
+}
+
+.custom-checkbox-label {
+    margin: 0;  /* Tar bort eventuell marginal på etiketten */
+    font-weight: bold;
+}
     </style>
 </head>
 <body>
@@ -293,14 +304,13 @@
                 <input type="tel" id="friend-phone" name="friend_phone" class="form-control" placeholder="Vännens telefonnummer">
             </div>
 
-            <!-- Checkbox för invändig fönsterputs -->
             <div class="form-group">
-                <label for="internal-cleaning">Är du intresserad av invändig fönsterputsning?</label>
-                <div class="custom-checkbox-container">
-                    <input type="checkbox" id="internal-cleaning" name="internal_cleaning" value="Ja">
-                    <label for="internal-cleaning" class="custom-checkbox-label">Ja, jag vill bli kontaktad för invändig putsning</label>
-                </div>
-            </div>
+    <label for="internal-cleaning">Är du intresserad av invändig fönsterputsning?</label>
+    <div class="custom-checkbox-container">
+        <input type="checkbox" id="internal-cleaning" name="internal_cleaning" value="Ja">
+        <label for="internal-cleaning" class="custom-checkbox-label">Ja, jag vill bli kontaktad för invändig putsning</label>
+    </div>
+</div>
 
             <!-- Bekräftelseknapp -->
             <div class="form-group text-center">
