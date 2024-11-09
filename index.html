@@ -3,475 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boka utvändig Fönsterputs - Fast pris 250 kr</title>
-
-    <!-- Open Graph metataggar -->
-    <meta property="og:title" content="Boka utvändig Fönsterputs - Fast pris 250kr för hela huset!">
-    <meta property="og:description" content="Boka din fönsterputsning idag för bara 250 kr efter RUT-avdrag!">
-    <meta property="og:image" content="https://i.imgur.com/LWr4TnI.png"> <!-- Bildlänk till din logga -->
-    <meta property="og:url" content="https://si5193.github.io/pk/"> <!-- Din hemsidas URL -->
-    <meta property="og:type" content="website">
-
-    <!-- Bootstrap 4 CSS för modern styling -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <!-- Google Fonts för snyggare fonter -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <title>Boka Fönsterputs - Ny Sida</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Videobakgrund inställningar */
-        body, html {
-            height: 100%;
+        body {
             margin: 0;
             padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f6f9fc 0%, #edf1f7 100%);
+            text-align: center;
+            overflow-x: hidden;
         }
 
-        .video-background {
+        .background-shapes {
             position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            z-index: -1; /* Sätt videon bakom allt innehåll */
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            background: linear-gradient(45deg, rgba(33, 150, 243, 0.1), rgba(233, 30, 99, 0.1));
+            border-radius: 50%;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            left: -150px;
+        }
+
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            bottom: -200px;
+            right: -200px;
         }
 
         .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.9); /* Vit bakgrund med transparens för att låta videon synas lite */
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 800px;
+            margin: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            font-weight: bold;
-        }
-
-        .price-info {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            color: green;
-            font-weight: bold;
-        }
-
-        .btn-primary {
-            background-color: #28a745;
-            border-color: #28a745;
-        }
-
-        .btn-primary:hover {
-            background-color: #218838;
-        }
-
-        /* Loggan */
         .logo {
-            display: block;
-            margin: 0 auto 20px;
-            max-width: 150px;
-        }
-
-        /* Popup (modal) för bokningsbekräftelse */
-        #confirmationModal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-
-        #confirmationModal .modal-content {
-            background-color: #fff;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 0 10px rgba(0, 128, 0, 0.4);
-        }
-
-        #confirmationModal h3 {
-            font-size: 1.6rem;
-            margin-bottom: 15px;
-            color: #155724;
-        }
-
-        #confirmationModal p {
-            font-size: 1.1rem;
-        }
-
-        .confirmation-icon {
-            font-size: 50px;
-            color: #28a745;
-            margin-bottom: 15px;
-        }
-
-        .close-confirmation {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close-confirmation:hover,
-        .close-confirmation:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        /* Snygga checkboxar som knappar */
-        .extra-services {
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
+            width: 200px;
+            height: auto;
             margin-bottom: 30px;
         }
 
-        .checkbox-button {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: #f0f0f0;
-            border: 2px solid #ddd;
-            padding: 15px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
-            font-weight: bold;
+        h1 {
+            color: #1a237e;
+            font-size: 32px;
+            margin-bottom: 40px;
+            font-weight: 700;
+            line-height: 1.4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .checkbox-button input {
-            display: none;
-        }
-
-        .checkbox-button.active {
-            background-color: #36b8eb;
-            color: white;
-            border-color: #37b8eb;
-            box-shadow: 0px 0px 15px rgba(0, 128, 0, 0.4);
-        }
-
-        .checkbox-button:hover {
-            border-color: #28a745;
-        }
-
-        .service-description {
-            font-size: 0.9rem;
-            margin-top: 5px;
-            color: #666;
-            text-align: center;
-        }
-
-        .extra-services-header {
-            font-weight: bold;
-            font-size: 1.2rem;
-            text-align: center;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        /* Villkor länk - Blå, centrerad och klickbar */
-        .terms-link {
-            text-align: center;
-            margin-top: 20px;
-            color: #007bff;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
-        .terms-link:hover {
-            color: #0056b3;
-        }
-
-        /* Modal-stil för villkor */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content {
-            background-color: #fff;
-            margin: 10% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 8px;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
+        .pulsing-button {
+            position: relative;
+            padding: 25px 50px;
+            font-size: 24px;
+            font-weight: 600;
             text-decoration: none;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(45deg, #2196F3, #E91E63);
             cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 1.5s infinite;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            display: inline-block;
+            transform-origin: center;
+            margin: 20px 0;
         }
 
-        .custom-checkbox-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            }
         }
 
-        .custom-checkbox-label {
-            margin: 0;
-            font-weight: bold;
+        .pulsing-button:hover {
+            animation: none;
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .pulsing-button:active {
+            transform: scale(0.98) translateY(0);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .button-glow {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #2196F3, #E91E63);
+            border-radius: 55px;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(15px);
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .message {
+            color: #666;
+            font-size: 18px;
+            margin-top: 30px;
+            line-height: 1.6;
+        }
+
+        .sparkle {
+            position: absolute;
+            background: white;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: sparkle 1.5s infinite;
+            opacity: 0;
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        /* Responsiv design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .pulsing-button {
+                padding: 20px 40px;
+                font-size: 20px;
+            }
         }
     </style>
 </head>
 <body>
-
-    <!-- Videobakgrund -->
-    <video autoplay muted loop playsinline class="video-background">
-        <source src="https://videos.pexels.com/video-files/1777892/1777892-hd_1280_720_25fps.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
 
     <div class="container">
-        <!-- Logotyp -->
-        <img src="https://i.imgur.com/sb9uZwT.png" alt="Putsvack Logotyp" class="logo">
+        <img src="Putsvack.png" alt="Putsväck Logo" class="logo">
+        
+        <h1>Detta erbjudande har flyttat till en annan sida!<br>
+        Men du kan enkelt boka till fast pris via knappen nedan</h1>
+        
+        <a href="https://putsvackfonsterputs.se" class="pulsing-button">
+            <div class="button-glow"></div>
+            Boka fönsterputs här till fast pris!
+            <div class="sparkle" style="top: 20%; left: 20%;"></div>
+            <div class="sparkle" style="top: 60%; left: 80%;"></div>
+            <div class="sparkle" style="top: 80%; left: 40%;"></div>
+        </a>
 
-        <h2>Förbokningskampanj Putsväck Fönsterputs</h2>
-
-        <!-- Fast pris information -->
-        <div class="price-info">
-            Fast pris för utvändig fönsterputsning: endast 250 kr efter RUT-avdrag för hela huset!
-        </div>
-
-        <!-- Bokningsformulär -->
-        <form id="myForm">
-            <!-- Namn -->
-            <div class="form-group">
-                <label for="name">Namn & Efternamn:</label>
-                <input type="text" id="name" name="name" class="form-control" placeholder="Ditt namn" required>
-            </div>
-
-            <!-- Adress -->
-            <div class="form-group">
-                <label for="address">Adress:</label>
-                <input type="text" id="address" name="address" class="form-control" placeholder="Din adress" required>
-            </div>
-
-            <!-- Stad -->
-            <div class="form-group">
-                <label for="city">Stad:</label>
-                <input type="text" id="city" name="city" class="form-control" placeholder="Din stad" required>
-            </div>
-
-            <!-- Postnummer -->
-            <div class="form-group">
-                <label for="postcode-modal">Postnummer:</label>
-                <input type="text" id="postcode-modal" name="postcode" class="form-control" placeholder="Ditt postnummer" required>
-            </div>
-
-            <!-- Personnummer för RUT -->
-            <div class="form-group">
-                <label for="ssn">Personnummer för RUT-avdraget:</label>
-                <input type="text" id="ssn" name="ssn" class="form-control" placeholder="Ditt personnummer" required>
-            </div>
-
-            <!-- Fönstertyp (Dropdown) -->
-            <div class="form-group">
-                <label for="window-type">Typ av fönster:</label>
-                <select id="window-type" name="window_type" class="form-control" required>
-                    <option value="" disabled selected>Välj typ av fönster</option>
-                    <option value="Normala fönster">Normala fönster</option>
-                    <option value="Fasta spröjs">Fasta spröjs</option>
-                    <option value="Avtagbara spröjs">Avtagbara spröjs</option>
-                </select>
-            </div>
-
-            <!-- Rubrik för extra tjänster -->
-            <div class="extra-services-header">
-                Vill du lägga till något extra? <br> (Tillkommer utöver kampanjen)
-            </div>
-
-            <!-- Extra tjänster (Snygga checkboxar som knappar) -->
-            <div class="extra-services">
-                <div class="checkbox-button" id="uterum-button">
-                    <input type="checkbox" id="uterum-veranda" name="extra_services_uterum" value="Ja">
-                    <label for="uterum-veranda">Uterum/Veranda</label>
-                    <div class="service-description">Kampanj uterum utvändigt 200kr</div>
-                </div>
-                <div class="checkbox-button" id="ovanvaning-button">
-                    <input type="checkbox" id="ovanvaning" name="extra_services_ovanvaning" value="Ja">
-                    <label for="ovanvaning">Ovanvåning</label>
-                    <div class="service-description">Kampanj 100kr/6st fönster på ovanvåningen</div>
-                </div>
-            </div>
-
-            <!-- E-post -->
-            <div class="form-group">
-                <label for="email">E-post:</label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="Din e-post" required>
-            </div>
-
-            <!-- Telefon -->
-            <div class="form-group">
-                <label for="phone">Telefon:</label>
-                <input type="tel" id="phone" name="phone" class="form-control" placeholder="Ditt telefonnummer" required>
-            </div>
-
-            <!-- Kommentar (extra information) -->
-            <div class="form-group">
-                <label for="comments">Kommentarer:</label>
-                <textarea id="comments" name="comments" class="form-control" rows="4" placeholder="T.ex. Har en hund, extra information..."></textarea>
-            </div>
-
-            <!-- Värva en vän/närstående -->
-            <div class="form-group">
-                <label for="friend-name">Värva en vän/närstående och få 15% rabatt på nästa puts:</label>
-                <input type="text" id="friend-name" name="friend_name" class="form-control" placeholder="Vännens namn">
-            </div>
-
-            <div class="form-group">
-                <input type="tel" id="friend-phone" name="friend_phone" class="form-control" placeholder="Vännens telefonnummer">
-            </div>
-
-            <!-- Intresse för invändig fönsterputsning -->
-            <div class="form-group">
-                <label for="internal-cleaning">Är du intresserad av invändig fönsterputsning?</label>
-                <div class="custom-checkbox-container">
-                    <input type="checkbox" id="internal-cleaning" name="internal_cleaning" value="Ja">
-                    <label for="internal-cleaning" class="custom-checkbox-label">Ja, jag vill bli kontaktad för invändig putsning</label>
-                </div>
-            </div>
-
-            <!-- Bekräftelseknapp -->
-            <div class="form-group text-center">
-                <button type="submit" class="btn btn-primary btn-block">Boka nu för 250 kr</button>
-            </div>
-        </form>
-
-        <!-- Villkor länk -->
-        <div class="terms-link" id="termsLink">Villkor</div>
+        <p class="message">
+            Klicka på knappen för att komma till vår nya bokningssida där du enkelt kan boka din fönsterputs!
+        </p>
     </div>
-
-    <!-- Modal för villkor -->
-    <div id="termsModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Villkor</h2>
-            <p>1. Du bokar automatiskt upp dig för löpande fönsterputsning. (Rena rutor året om)</p>
-            <p>2. Du kan närsomhelst avsluta/pausa fönsterputsningen. Det finns således ingen uppsägningstid eller bindningstid.</p>
-            <p>3. Ditt pris första gången är 250:-. Vi räknar sedan ut fortsatt pris efter första putsningen.</p>
-            <p>4. I erbjudandet ingår fönsterputsning upp till 30 rutor. Sedan tillkommer en kostnad med 14:- per fönster efter RUT-avdrag.</p>
-            <p>5. Uterum och övervåning är tilläggstjänster och kostar extra utöver de 250:- som kampanjen är på.</p>
-            <p>6. Vi putsar dina rutor ungefär var 8:e vecka. Detta blir ca 6 tillfällen per år.</p>
-        </div>
-    </div>
-
-    <!-- Popup Modal för bokningsbekräftelse -->
-    <div id="confirmationModal">
-        <div class="modal-content">
-            <span class="close-confirmation">&times;</span>
-            <div class="confirmation-icon">✔️</div>
-            <h3>Bokning genomförd!</h3>
-            <p>Tack för din bokning!</p>
-            <p>Vi putsar dina fönster inom 1-4 veckor. Du kommer att få ett meddelande innan vi kommer.</p>
-            <p><strong>Behöver du hjälp?</strong> Kontakta oss på <a href="tel:+46723158632">072-3158632</a>.</p>
-
-        </div>
-    </div>
-
-    <!-- EmailJS och jQuery -->
-    <script>
-        // Hantera checkbox-knappar för extra tjänster
-        $('#uterum-button').click(function() {
-            $(this).toggleClass('active');
-            $('#uterum-veranda').prop('checked', !$('#uterum-veranda').prop('checked'));
-        });
-
-        $('#ovanvaning-button').click(function() {
-            $(this).toggleClass('active');
-            $('#ovanvaning').prop('checked', !$('#ovanvaning').prop('checked'));
-        });
-
-
-        $('#myForm').on('submit', function(event) {
-            event.preventDefault(); // Hindra siduppdatering
-
-            // Hämta formulärdata
-            var formData = new FormData(this);
-
-            formData.append('service_id', 'service_9gfg81a');  // Ditt Service ID
-            formData.append('template_id', 'template_5c722qi');  // Ditt Template ID
-            formData.append('user_id', 'sNU4y7tlo5J8WCort');  // Din Public Key
-
-            // Skicka AJAX-förfrågan till EmailJS
-            $.ajax('https://api.emailjs.com/api/v1.0/email/send-form', {
-                type: 'POST',
-                data: formData,
-                contentType: false, 
-                processData: false 
-            }).done(function() {
-                $('#confirmationModal').show();  // Visa bokningsbekräftelse som popup
-                $('#myForm')[0].reset(); // Återställ formuläret
-                $('.checkbox-button').removeClass('active');
-            }).fail(function(error) {
-                alert('Ett fel uppstod vid bokningen. Försök igen.');
-            });
-        });
-
-        // Stäng bokningsbekräftelse (popup)
-        $('.close-confirmation').click(function() {
-            $('#confirmationModal').hide();
-        });
-
-        // Modal för villkor
-        var modal = document.getElementById('termsModal');
-        var btn = document.getElementById('termsLink');
-        var span = document.getElementsByClassName('close')[0];
-
-        btn.onclick = function() {
-            modal.style.display = 'block';
-        }
-
-        span.onclick = function() {
-            modal.style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
-    </script>
-
-    <!-- Bootstrap JS (valfritt) -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
 </html>
